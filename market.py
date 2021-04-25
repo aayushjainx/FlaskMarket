@@ -3,17 +3,14 @@
 #set FLASK_DEBUG=1 or $env:FLASK_DEBUG=1
 #flask run
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return '<h1>Hello World!!</h1>'
-
-@app.route('/about/<username>')
-def about(username):
-    return f'<h1>About! of {username}</h1>'
+@app.route('/home')
+def home_page():
+    return render_template('home.html')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
