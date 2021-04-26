@@ -1,0 +1,47 @@
+#py -m venv venv => venv/scripts/activate => 
+#set FLASK_APP=app.py or $env:FLASK_APP = "app.py"
+#set FLASK_DEBUG=1 or $env:FLASK_DEBUG=1
+#flask run
+
+>>> from market import db
+D:\Aayush\Projects\FlaskMarket\venv\lib\site-packages\flask_sqlalchemy\__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.       
+  warnings.warn(FSADeprecationWarning(
+>>> db.create_all()
+>>> from market import Item
+>>> item1 = Item(name="Iphone 10", price=500, barcode="854125987063", description="desc")
+>>> db.session.add(item1)
+>>> db.session.commit()
+>>> Item.query.all()
+[<Item 1>]
+>>> item2 = Item(name="Laptop", price=600, barcode="954162407063", description="description")
+>>> db.session.add(item2)
+>>> Item.query.all()
+[<Item 1>, <Item 2>]
+
+>>> Item.query.all() 
+[Item Iphone 10, Item Laptop]
+
+>>> for item in Item.query.all():
+...     item.name
+...     item.price
+...     item.description
+...     item.id
+...     item.barcode
+... 
+'Iphone 10'
+500
+'desc'
+1
+'854125987063'
+'Laptop'
+600
+'description'
+2
+'954162407063'
+>>> Item.query.filter_by(price=500)
+<flask_sqlalchemy.BaseQuery object at 0x000002400CE09D90>
+>>> 
+>>> for item in Item.query.filter_by(price=500):
+...     item.name
+... 
+'Iphone 10'
