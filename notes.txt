@@ -45,3 +45,39 @@ D:\Aayush\Projects\FlaskMarket\venv\lib\site-packages\flask_sqlalchemy\__init__.
 ...     item.name
 ... 
 'Iphone 10'
+
+
+>>> db.drop_all()
+>>> db.create_all()
+>>> from market.models import User, Item
+>>> u1 = User(username="aayush", password_hash="pass", email="jaayush014@gmail.com")          
+>>> db.session.add(u1)
+>>> db.session.commit()
+>>> User.query.all() 
+[<User 1>]
+>>> i1 = Item(name="iPhone 10", description="apple phone", barcode="123456789123", price="800")
+>>> db.session.add(i1)  
+>>> db.session.commit()
+>>> i2 = Item(name="Laptop", description="windows laptop", barcode="365476789123", price="1000") 
+>>> db.session.add(i1)  
+>>> db.session.add(i2) 
+>>> db.session.commit()
+>>> User.query.all() 
+[<User 1>]
+>>> Item.query.all() 
+[Item iPhone 10, Item Laptop]
+>>> item1 = Item.query.filter_by(name='iPhone 10')
+>>> item1
+<flask_sqlalchemy.BaseQuery object at 0x0000028598CB4550>
+>>> item1 = Item.query.filter_by(name='iPhone 10').first()
+>>> item1
+Item iPhone 10
+>>> db.session.rollback() //to rollback mistake session add
+>>> item1.owner = User.query.filter_by(username="aayush").first().id
+>>> db.session.add(item1)                                            
+>>> db.session.commit()
+>>> item1.owner
+1
+>>> i = Item.query.filter_by(name='iPhone 10').first()
+>>> i.owned_user
+<User 1>

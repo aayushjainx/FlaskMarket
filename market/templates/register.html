@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Register Page 
+{% endblock %} 
+
+{% block content %}
+<body class="text-center">
+  <div class="container">
+    <form method="POST" class="form-register" style="color: white">
+      <img class="" height="150" width="150" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/market-1660094-1408799.png" alt="">
+      <h1 class="h3 mb-3 font-weight-normal">
+        Please Create your Account
+      </h1>
+      {{form.username.label()}} {{form.username(class="form-control", placeholder='User Name')}}
+      {{form.email.label()}} {{form.email(class="form-control", placeholder='Email')}} 
+      {{form.password1.label()}} {{form.password1(class="form-control", placeholder='Password')}} 
+      {{form.password2.label()}} {{form.password2(class="form-control", placeholder='Confirm Password')}}
+      <br/>
+      {{form.submit(class='btn btn-lg btn-block btn-primary')}}
+    </form>
+  </div>
+</body>
+{% endblock %}
