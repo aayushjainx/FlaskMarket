@@ -18,6 +18,10 @@ Register Page
       {{form.password1.label()}} {{form.password1(class="form-control", placeholder='Password')}} 
       {{form.password2.label()}} {{form.password2(class="form-control", placeholder='Confirm Password')}}
       <br/>
+      <div class="checkbox mb-3">
+        <h6>Already have an Account?</h6>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Sign In</a>
+     </div>
       {{form.submit(class='btn btn-lg btn-block btn-primary')}}
     </form>
   </div>
